@@ -16,18 +16,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with pmbootstrap.  If not, see <http://www.gnu.org/licenses/>.
 """
-import os
-import glob
+import pmb.chroot.root
 
 
-def list(args):
+def setup_keymap(args):
     """
-    Get all keymaps for the current selected device
-    :returns: ["postmarketos-ui-one", "postmarketos-ui-two", ..., "none"]
+    Set the keymap with the setup-keymap utility if the device requires it
     """
-    ret = []
-    for path in glob.glob(args.aports + "/main/postmarketos-ui-*"):
-        ui = os.path.basename(path).split("-", 2)[2]
-        ret.append(ui)
-    ret.append('none')
-    return ret
+    suffix = "rootfs_" + args.device
+    if args.keymap != "":
+        layout, variant = args.keymap.split("/")
+        pmb.chroot.root(args, ["setup-keymap", layout, variant], suffix, log=False)

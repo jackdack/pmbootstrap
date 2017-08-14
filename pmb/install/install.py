@@ -169,6 +169,11 @@ def install(args):
     # Set the user password
     set_user_password(args)
 
+    # Set the keymap if the device requires it
+    pmb.helpers.keymap.setup_keymap(args)
+
+    # Finally set the user password
+
     # Partition and fill image/sdcard
     logging.info("*** (3/5) PREPARE INSTALL BLOCKDEVICE ***")
     pmb.chroot.shutdown(args, True)
