@@ -26,7 +26,6 @@ import pmb.chroot.other
 import pmb.chroot.initfs
 import pmb.config
 import pmb.helpers.run
-import pmb.helpers.other
 import pmb.install.blockdevice
 import pmb.install
 
@@ -134,6 +133,16 @@ def copy_ssh_key(args):
         logging.info("NOTE: No public SSH key found, you will only be able to use SSH password authentication!")
 
 
+def setup_keymap(args):
+    """
+    Set the keymap with the setup-keymap utility if the device requires it
+    """
+    suffix = "rootfs_" + args.device
+    if args.keymap != "" and args.keymap is not None:
+        layout, variant = args.keymap.split("/")
+        pmb.chroot.root(args, ["setup-keymap", layout, variant], suffix, log=False)
+
+
 def install(args):
     # Install required programs in native chroot
     logging.info("*** (1/5) PREPARE NATIVE CHROOT ***")
@@ -170,7 +179,7 @@ def install(args):
     set_user_password(args)
 
     # Set the keymap if the device requires it
-    pmb.helpers.keymap.setup_keymap(args)
+    setup_keymap(args)
 
     # Finally set the user password
 

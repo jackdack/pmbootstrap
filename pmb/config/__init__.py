@@ -56,7 +56,7 @@ defaults = {
     "work": os.path.expanduser("~") + "/.local/var/pmbootstrap",
     "port_distccd": "33632",
     "ui": "weston",
-    "keymap": "",
+    "keymap": None,
 
     # aes-xts-plain64 would be better, but this is not supported on LineageOS
     # kernel configs

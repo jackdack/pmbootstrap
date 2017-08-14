@@ -63,11 +63,13 @@ def ask_for_ui(args):
 
 def ask_for_keymaps(args, device):
     info = pmb.parse.deviceinfo(args, device=device)
-    if 'keymaps' not in info:
+    if "keymaps" not in info:
         return
-    options = info['keymaps'].split(' ')
-    options += [""]
+    options = info["keymaps"].split(' ')
     logging.info("Available keymaps for device: " + ", ".join(options))
+    if args.keymap is None:
+        args.keymap = options[0]
+
     while True:
         ret = pmb.helpers.cli.ask(args, "Keymap", None, args.keymap, True)
         if ret in options:
