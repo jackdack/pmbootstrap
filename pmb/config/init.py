@@ -25,6 +25,7 @@ import pmb.helpers.cli
 import pmb.helpers.devices
 import pmb.helpers.ui
 import pmb.chroot.zap
+import pmb.parse.deviceinfo
 
 
 def ask_for_work_path(args):
@@ -60,6 +61,21 @@ def ask_for_ui(args):
                       " one from the list above.")
 
 
+def ask_for_keymaps(args, device):
+    info = pmb.parse.deviceinfo(args, device=device)
+    if 'keymaps' not in info:
+        return
+    options = info['keymaps'].split(' ')
+    options += [""]
+    logging.info("Available keymaps for device: " + ", ".join(options))
+    while True:
+        ret = pmb.helpers.cli.ask(args, "Keymap", None, args.keymap, True)
+        if ret in options:
+            return ret
+        logging.fatal("ERROR: Invalid keymap specified, please type in"
+                      " one from the list above.")
+
+
 def init(args):
     cfg = pmb.config.load(args)
 
@@ -71,6 +87,9 @@ def init(args):
                  ", ".join(devices))
     cfg["pmbootstrap"]["device"] = pmb.helpers.cli.ask(args, "Device",
                                                        None, args.device, False, "[a-z0-9]+-[a-z0-9]+")
+
+    # Device keymap
+    cfg["pmbootstrap"]["keymap"] = ask_for_keymaps(args, device=cfg["pmbootstrap"]["device"])
 
     # UI and work folder
     cfg["pmbootstrap"]["ui"] = ask_for_ui(args)
