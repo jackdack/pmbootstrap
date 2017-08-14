@@ -6,7 +6,7 @@ url="https://github.com/postmarketOS"
 arch="noarch"
 license="MIT"
 depends="linux-postmarketos uboot-tools linux-firmware kbd kbd-bkeymaps"
-makedepends="uboot-tools kbd-bkeymaps"
+makedepends="uboot-tools kbd kbd-bkeymaps"
 install="$pkgname.post-install"
 subpackages=""
 source="
@@ -23,7 +23,8 @@ options="!check"
 
 build() {
 	mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n postmarketos -d "$srcdir/uboot-script.cmd" "$srcdir/boot.scr"
-	loadkeys -b "$srcdir"/keymaps/rx51_us.map > "$srcdir"/keymaps/rx51_us.bmap
+	mkdir "$srcdir"/keymaps
+	loadkeys -b "$srcdir"/rx51_us.map > "$srcdir"/keymaps/rx51_us.bmap
 	gzip "$srcdir"/keymaps/rx51_us.bmap
 	return 0
 }
@@ -42,8 +43,8 @@ package() {
                 "$pkgdir"/etc/acpi/handler.sh
         install -D -m644 "$srcdir"/acpi.map\
                 "$pkgdir"/etc/acpi.map
-        install -D -m644 "$srcdir"/keymaps/rx51_us.bmap\
-                "$pkgdir"/usr/share/bkeymaps/us/rx51_us.bmap
+        install -D -m644 "$srcdir"/keymaps/rx51_us.bmap.gz\
+                "$pkgdir"/usr/share/bkeymaps/us/rx51_us.bmap.gz
 }
 
 sha512sums="cecba9a4a5ba6ddd736e4a46eecac20865d6c4d7a2d95efbbc33d1e8cacf9e3583aa80118fd5044da6ee08997d9d2c59af4f896692859b6e2e39e55fa515b566  deviceinfo
