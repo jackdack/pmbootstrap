@@ -3,7 +3,7 @@ pkgver=1.7.7
 pkgrel=1
 
 pkgdesc="Library for hw graphics acceleration, input dev, windowing system on top of the Linux fb device"
-arch="armhf"
+arch="all"
 
 url="http://www.directfb.org"
 license="LGPL"
