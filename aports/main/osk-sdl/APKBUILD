@@ -2,7 +2,7 @@ _hash="0eadb58cdadef141f2761d76d012b2cd9aabdef1"
 
 pkgname=osk-sdl
 pkgver=1
-pkgrel=1
+pkgrel=2
 pkgdesc="Onscreen Keyboard for Framebuffer"
 url="https://github.com/craftyguy/onscreenkeyboard"
 arch="all"
