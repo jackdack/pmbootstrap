@@ -21,7 +21,7 @@ build() {
 }
 
 package() {
-	install -D -m755 "${srcdir}/${pkgname}-{$_hash}" \
+	install -D -m755 "${srcdir}/${pkgname}-${_hash}"/osk-sdl \
 		"$pkgdir"/usr/bin/osk-sdl
 }
 sha512sums="2d1ae160f51338a2f45e41aa77084083f907074beed85ad8b2773b2d70283f78599bff2680c5e8b07a02aa034dcde852201a7e5f8db219b4cc2563f0dd9429c4  osk-sdl-0eadb58cdadef141f2761d76d012b2cd9aabdef1.tar.gz"
