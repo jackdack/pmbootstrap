@@ -63,7 +63,7 @@ def ask_for_ui(args):
 
 def ask_for_keymaps(args, device):
     info = pmb.parse.deviceinfo(args, device=device)
-    if "keymaps" not in info:
+    if "keymaps" not in info or info["keymaps"].strip() == "":
         return
     options = info["keymaps"].split(' ')
     logging.info("Available keymaps for device: " + ", ".join(options))
