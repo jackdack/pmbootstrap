@@ -129,9 +129,10 @@ get_binaries_extra()
 # $2: destination
 copy_files()
 {
+	mode="${3:-755}"
 	for file in $1; do
 		[ -e "$file" ] || continue
-		install -Dm755 "$file" "$2$file"
+		install -Dm$mode "$file" "$2$file"
 	done
 }
 
@@ -251,6 +252,7 @@ tmpdir=$(mktemp -d /tmp/mkinitfs.XXXXXX)
 create_folders
 copy_files "$(get_modules)" "$tmpdir"
 copy_files "$(get_binaries)" "$tmpdir"
+copy_files "/etc/deviceinfo" "$tmpdir" "644"
 copy_files "/etc/postmarketos-mkinitfs/hooks/*.sh" "$tmpdir"
 create_device_nodes
 ln -s "/bin/busybox" "$tmpdir/bin/sh"
