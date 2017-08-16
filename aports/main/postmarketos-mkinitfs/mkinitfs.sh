@@ -145,7 +145,6 @@ create_device_nodes()
 
 replace_init_variables()
 {
-	sed -i "s:@MODULES@:${deviceinfo_modules_initfs} ext4:g" "$tmpdir/init"
 	sed -i "s:@INITRAMFS_EXTRA@:${outfile_extra}:g" "$tmpdir/init"
 }
 
