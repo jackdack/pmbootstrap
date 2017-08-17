@@ -1,14 +1,14 @@
-_hash="0eadb58cdadef141f2761d76d012b2cd9aabdef1"
+_hash="debd421f276bbad1d0973ba97c69a771c08fe9f4"
 
 pkgname=osk-sdl
 pkgver=1
-pkgrel=2
+pkgrel=3
 pkgdesc="Onscreen Keyboard for Framebuffer"
 url="https://github.com/craftyguy/onscreenkeyboard"
 arch="all"
 license="GPL2"
 depends="sdl2_image sdl2 sdl2_ttf cryptsetup-libs"
-makedepends="linux-headers sdl2-dev sdl2_image-dev sdl2_ttf cryptsetup-dev"
+makedepends="linux-headers sdl2-dev sdl2_image-dev sdl2_ttf-dev cryptsetup-dev"
 subpackages=""
 
 source="$pkgname-$_hash.tar.gz::https://github.com/postmarketos/${pkgname}/archive/${_hash}.tar.gz"
