@@ -257,8 +257,8 @@ def index_repo(args, arch=None):
         ]
         for command in commands:
             pmb.chroot.user(args, command, working_dir=path_repo_chroot)
-        pmb.parse.apkindex.clear_cache(args, args.work + path
-                                       + "/APKINDEX.tar.gz")
+        pmb.parse.apkindex.clear_cache(args, args.work + path +
+                                       "/APKINDEX.tar.gz")
 
 
 def symlink_noarch_package(args, arch_apk):
