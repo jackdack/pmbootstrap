@@ -1,13 +1,13 @@
 pkgname=directfb
 pkgver=1.7.7
-pkgrel=2
+pkgrel=3
 
 pkgdesc="Library for hw graphics acceleration, input dev, windowing system on top of the Linux fb device"
 arch="all"
 
 url="http://www.directfb.org"
 license="LGPL"
-makedepends="zlib-dev freetype-dev libdrm-dev libpng-dev perl tslib-dev"
+makedepends="zlib-dev freetype-dev libdrm-dev libpng-dev perl tslib-dev autoconf automake libtool"
 depends="libgcc libjpeg libpng freetype libdrm tslib"
 
 subpackages="$pkgname-doc"
